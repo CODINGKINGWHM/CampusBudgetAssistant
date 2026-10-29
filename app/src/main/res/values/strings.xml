@@ -12,5 +12,13 @@
     <string name="input_budget_first">请先输入预算金额</string>
     <string name="invalid_amount">请输入正确的金额</string>
     <string name="budget_format">本月预算：¥%.2f　已支出：¥%.2f　剩余：¥%.2f</string>
+    <string name="add_page_title">添加消费记录</string>
+    <string name="current_budget_format">当前设置的预算：¥%.2f</string>
+    <string name="amount_hint">请输入金额</string>
+    <string name="note_hint">请输入消费说明</string>
+    <string name="save_record">保存记录</string>
+    <string name="cancel">取消</string>
+    <string name="complete_record">请填写金额和消费说明</string>
+    <string name="record_received">已接收记录：%1$s，¥%2$.2f</string>
 </resources>
 

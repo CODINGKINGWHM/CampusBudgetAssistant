@@ -1,6 +1,8 @@
 package com.wanghaoming.campusbudgetassistant;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -10,6 +12,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final int REQUEST_ADD_RECORD = 100;
 
     private EditText etBudget;
     private TextView tvBudgetSummary;
@@ -27,9 +31,24 @@ public class MainActivity extends AppCompatActivity {
         listRecords = findViewById(R.id.listRecords);
         TextView tvEmptyRecord = findViewById(R.id.tvEmptyRecord);
         Button btnSetBudget = findViewById(R.id.btnSetBudget);
+        Button btnAddRecord = findViewById(R.id.btnAddRecord);
 
         listRecords.setEmptyView(tvEmptyRecord);
-        btnSetBudget.setOnClickListener(view -> setMonthlyBudget());
+        btnSetBudget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setMonthlyBudget();
+            }
+        });
+
+        btnAddRecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AddRecordActivity.class);
+                intent.putExtra("currentBudget", budget);
+                startActivityForResult(intent, REQUEST_ADD_RECORD);
+            }
+        });
     }
 
     private void setMonthlyBudget() {
@@ -55,6 +74,18 @@ public class MainActivity extends AppCompatActivity {
         double remaining = budget - expenseTotal;
         tvBudgetSummary.setText(getString(
                 R.string.budget_format, budget, expenseTotal, remaining));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_ADD_RECORD && resultCode == RESULT_OK && data != null) {
+            double amount = data.getDoubleExtra("amount", 0);
+            String note = data.getStringExtra("note");
+            Toast.makeText(this,
+                    getString(R.string.record_received, note, amount),
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 }
 
