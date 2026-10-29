@@ -27,5 +27,10 @@
     <string name="necessary_expense">必要消费</string>
     <string name="include_budget">计入本月预算</string>
     <string name="selection_preview">当前选择：%1$s / %2$s</string>
+    <string name="necessary_tag">必要消费</string>
+    <string name="normal_tag">普通消费</string>
+    <string name="in_budget_tag">计入预算</string>
+    <string name="out_budget_tag">不计入预算</string>
+    <string name="record_click_format">%1$s\n%2$s\n%3$s</string>
 </resources>
 
