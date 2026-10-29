@@ -32,5 +32,11 @@
     <string name="in_budget_tag">计入预算</string>
     <string name="out_budget_tag">不计入预算</string>
     <string name="record_click_format">%1$s\n%2$s\n%3$s</string>
+    <string name="login_title">预算助手登录</string>
+    <string name="password_hint">请输入访问密码</string>
+    <string name="login_button">进入系统</string>
+    <string name="password_tip">课程演示密码：学号后4位</string>
+    <string name="password_empty">请输入密码</string>
+    <string name="password_wrong">密码错误，请重新输入</string>
 </resources>
 
