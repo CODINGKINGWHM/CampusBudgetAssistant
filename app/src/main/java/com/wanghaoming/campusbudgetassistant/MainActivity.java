@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private SimpleAdapter recordAdapter;
     private double budget = 0;
     private double expenseTotal = 0;
+    private double necessaryExpenseTotal = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,8 +100,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateBudgetSummary() {
         double remaining = budget - expenseTotal;
+        double necessaryRate = expenseTotal > 0
+                ? necessaryExpenseTotal / expenseTotal * 100
+                : 0;
         tvBudgetSummary.setText(getString(
-                R.string.budget_format, budget, expenseTotal, remaining));
+                R.string.budget_format, budget, expenseTotal, remaining,
+                necessaryExpenseTotal, necessaryRate));
     }
 
     @Override
@@ -137,6 +142,9 @@ public class MainActivity extends AppCompatActivity {
 
             if (isExpense) {
                 expenseTotal += amount;
+                if (necessary) {
+                    necessaryExpenseTotal += amount;
+                }
             } else if (includeBudget) {
                 budget += amount;
                 etBudget.setText(String.format("%.2f", budget));

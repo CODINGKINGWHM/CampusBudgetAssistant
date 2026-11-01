@@ -11,7 +11,7 @@
     <string name="add_record">添加一笔记录</string>
     <string name="input_budget_first">请先输入预算金额</string>
     <string name="invalid_amount">请输入正确的金额</string>
-    <string name="budget_format">本月预算：¥%.2f　已支出：¥%.2f　剩余：¥%.2f</string>
+    <string name="budget_format">本月预算：¥%1$.2f　已支出：¥%2$.2f　剩余：¥%3$.2f\n必要消费：¥%4$.2f（占总支出 %5$.1f%%）</string>
     <string name="add_page_title">添加消费记录</string>
     <string name="current_budget_format">当前设置的预算：¥%.2f</string>
     <string name="amount_hint">请输入金额</string>
