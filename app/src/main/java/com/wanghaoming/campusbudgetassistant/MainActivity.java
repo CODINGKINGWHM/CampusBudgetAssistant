@@ -127,7 +127,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             HashMap<String, Object> record = new HashMap<>();
-            record.put("title", type + " · " + category);
+            String title = isExpense ? type + " · " + category : type;
+            record.put("title", title);
             record.put("detail", note + " · " + optionText);
             String sign = isExpense ? "-" : "+";
             record.put("amount", sign + "¥" + String.format("%.2f", amount));

@@ -23,6 +23,8 @@ public class AddRecordActivity extends AppCompatActivity {
     private CheckBox cbNecessary;
     private CheckBox cbIncludeBudget;
     private TextView tvSelectionPreview;
+    private TextView tvCategoryLabel;
+    private Spinner spCategory;
     private String selectedCategory;
     private String selectedType;
 
@@ -36,9 +38,10 @@ public class AddRecordActivity extends AppCompatActivity {
         cbNecessary = findViewById(R.id.cbNecessary);
         cbIncludeBudget = findViewById(R.id.cbIncludeBudget);
         tvSelectionPreview = findViewById(R.id.tvSelectionPreview);
+        tvCategoryLabel = findViewById(R.id.tvCategoryLabel);
         TextView tvCurrentBudget = findViewById(R.id.tvCurrentBudget);
         RadioGroup rgType = findViewById(R.id.rgType);
-        Spinner spCategory = findViewById(R.id.spCategory);
+        spCategory = findViewById(R.id.spCategory);
         Button btnSaveRecord = findViewById(R.id.btnSaveRecord);
         Button btnCancel = findViewById(R.id.btnCancel);
 
@@ -73,11 +76,15 @@ public class AddRecordActivity extends AppCompatActivity {
                     cbNecessary.setChecked(false);
                     cbNecessary.setVisibility(View.GONE);
                     cbIncludeBudget.setVisibility(View.VISIBLE);
+                    tvCategoryLabel.setVisibility(View.GONE);
+                    spCategory.setVisibility(View.GONE);
                 } else {
                     selectedType = getString(R.string.expense);
                     cbIncludeBudget.setChecked(false);
                     cbIncludeBudget.setVisibility(View.GONE);
                     cbNecessary.setVisibility(View.VISIBLE);
+                    tvCategoryLabel.setVisibility(View.VISIBLE);
+                    spCategory.setVisibility(View.VISIBLE);
                 }
                 updateSelectionPreview();
             }
@@ -139,9 +146,9 @@ public class AddRecordActivity extends AppCompatActivity {
             Intent data = new Intent();
             data.putExtra("amount", amount);
             data.putExtra("note", note);
-            data.putExtra("category", selectedCategory);
             data.putExtra("type", selectedType);
             boolean isExpense = getString(R.string.expense).equals(selectedType);
+            data.putExtra("category", isExpense ? selectedCategory : "");
             data.putExtra("necessary", isExpense && cbNecessary.isChecked());
             data.putExtra("includeBudget", !isExpense && cbIncludeBudget.isChecked());
             setResult(RESULT_OK, data);
@@ -153,19 +160,21 @@ public class AddRecordActivity extends AppCompatActivity {
 
     private void updateSelectionPreview() {
         String type = selectedType == null ? getString(R.string.expense) : selectedType;
-        String category = selectedCategory == null ? "" : selectedCategory;
         String option;
         if (getString(R.string.expense).equals(type)) {
+            String category = selectedCategory == null ? "" : selectedCategory;
             option = cbNecessary.isChecked()
                     ? getString(R.string.necessary_tag)
                     : getString(R.string.normal_tag);
+            tvSelectionPreview.setText(getString(
+                    R.string.selection_preview_expense, type, category, option));
         } else {
             option = cbIncludeBudget.isChecked()
                     ? getString(R.string.in_budget_tag)
                     : getString(R.string.out_budget_tag);
+            tvSelectionPreview.setText(getString(
+                    R.string.selection_preview_income, type, option));
         }
-        tvSelectionPreview.setText(getString(
-                R.string.selection_preview, type, category, option));
     }
 }
 
