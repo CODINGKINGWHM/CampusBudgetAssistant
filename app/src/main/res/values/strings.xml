@@ -15,10 +15,11 @@
     <string name="add_page_title">添加消费记录</string>
     <string name="current_budget_format">当前设置的预算：¥%.2f</string>
     <string name="amount_hint">请输入金额</string>
-    <string name="note_hint">请输入消费说明</string>
+    <string name="note_hint">请输入说明</string>
     <string name="save_record">保存记录</string>
     <string name="cancel">取消</string>
-    <string name="complete_record">请填写金额和消费说明</string>
+    <string name="complete_record">请填写金额</string>
+    <string name="no_note">无说明</string>
     <string name="record_received">已接收记录：%1$s，¥%2$.2f</string>
     <string name="record_type">收支类型</string>
     <string name="expense">支出</string>
@@ -26,16 +27,15 @@
     <string name="record_category">消费类别</string>
     <string name="necessary_expense">必要消费</string>
     <string name="include_budget">计入本月预算</string>
-    <string name="selection_preview">当前选择：%1$s / %2$s</string>
+    <string name="selection_preview">当前选择：%1$s / %2$s / %3$s</string>
     <string name="necessary_tag">必要消费</string>
     <string name="normal_tag">普通消费</string>
     <string name="in_budget_tag">计入预算</string>
     <string name="out_budget_tag">不计入预算</string>
     <string name="record_click_format">%1$s\n%2$s\n%3$s</string>
     <string name="login_title">预算助手登录</string>
-    <string name="password_hint">请输入访问密码</string>
+    <string name="password_hint">请输入密码（学号后四位）</string>
     <string name="login_button">进入系统</string>
-    <string name="password_tip">课程演示密码：学号后4位</string>
     <string name="password_empty">请输入密码</string>
     <string name="password_wrong">密码错误，请重新输入</string>
 </resources>

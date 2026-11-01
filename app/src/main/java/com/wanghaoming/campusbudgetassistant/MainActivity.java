@@ -114,26 +114,35 @@ public class MainActivity extends AppCompatActivity {
             boolean necessary = data.getBooleanExtra("necessary", false);
             boolean includeBudget = data.getBooleanExtra("includeBudget", true);
 
-            String necessaryText = necessary
-                    ? getString(R.string.necessary_tag)
-                    : getString(R.string.normal_tag);
-            String budgetText = includeBudget
-                    ? getString(R.string.in_budget_tag)
-                    : getString(R.string.out_budget_tag);
+            boolean isExpense = getString(R.string.expense).equals(type);
+            String optionText;
+            if (isExpense) {
+                optionText = necessary
+                        ? getString(R.string.necessary_tag)
+                        : getString(R.string.normal_tag);
+            } else {
+                optionText = includeBudget
+                        ? getString(R.string.in_budget_tag)
+                        : getString(R.string.out_budget_tag);
+            }
 
             HashMap<String, Object> record = new HashMap<>();
             record.put("title", type + " · " + category);
-            record.put("detail", note + " · " + necessaryText + " · " + budgetText);
-            String sign = getString(R.string.income).equals(type) ? "+" : "-";
+            record.put("detail", note + " · " + optionText);
+            String sign = isExpense ? "-" : "+";
             record.put("amount", sign + "¥" + String.format("%.2f", amount));
             recordData.add(record);
             recordAdapter.notifyDataSetChanged();
 
-            if (getString(R.string.expense).equals(type) && includeBudget) {
+            if (isExpense) {
                 expenseTotal += amount;
-                if (budget > 0) {
-                    updateBudgetSummary();
-                }
+            } else if (includeBudget) {
+                budget += amount;
+                etBudget.setText(String.format("%.2f", budget));
+            }
+
+            if (budget > 0) {
+                updateBudgetSummary();
             }
         }
     }

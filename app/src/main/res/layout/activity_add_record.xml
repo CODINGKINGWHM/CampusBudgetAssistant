@@ -100,9 +100,10 @@
             android:id="@+id/cbIncludeBudget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="true"
+            android:checked="false"
             android:text="@string/include_budget"
-            android:textColor="#212121" />
+            android:textColor="#212121"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tvSelectionPreview"
